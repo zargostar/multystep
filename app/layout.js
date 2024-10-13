@@ -2,6 +2,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "../contexts/theme-provider";
 import TopNav from "@/components/ui/nav/top-nav";
+import { ResumeProvider } from "@/contexts/resumeContext";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -33,8 +34,10 @@ export default function RootLayout({ children }) {
           enableSystem
           disableTransitionOnChange
         >
-          <TopNav />
-          {children}
+          <ResumeProvider>
+            <TopNav />
+            <div className="w-screen">{children}</div>
+          </ResumeProvider>
         </ThemeProvider>
       </body>
     </html>
