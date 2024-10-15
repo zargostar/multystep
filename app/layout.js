@@ -3,6 +3,7 @@ import "./globals.css";
 import { ThemeProvider } from "../contexts/theme-provider";
 import TopNav from "@/components/ui/nav/top-nav";
 import { ResumeProvider } from "@/contexts/resumeContext";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -24,22 +25,24 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased `}
-      >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
+    <ClerkProvider>
+      <html lang="en">
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased `}
         >
-          <ResumeProvider>
-            <TopNav />
-            <div className="w-screen">{children}</div>
-          </ResumeProvider>
-        </ThemeProvider>
-      </body>
-    </html>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <ResumeProvider>
+              <TopNav />
+              <div className="w-screen">{children}</div>
+            </ResumeProvider>
+          </ThemeProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
