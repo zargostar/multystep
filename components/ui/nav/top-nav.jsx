@@ -22,7 +22,7 @@ export default function TopNav() {
       </Link>
       <div className="flex flex-row items-center space-x-2">
         <ModeToggle />
-        {isSignedIn && <Link href="/panel">Panel {user.firstName}</Link>}
+        {isSignedIn && <Link href="/panel">{`Panel ${user.firstName} `}</Link>}
         <SignedOut>
           <SignInButton className="bg-primary text-primary-foreground px-3 py-1" />
         </SignedOut>
